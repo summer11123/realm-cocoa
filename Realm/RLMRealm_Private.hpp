@@ -25,17 +25,22 @@ extern "C" {
 #import <tightdb/link_view.hpp>
 #import <tightdb/group.hpp>
 
+@class RLMWeakNotifier;
+
 // RLMRealm private members
 @interface RLMRealm () {
     @public
     // expose ivar to to avoid objc messages in accessors
     BOOL _inWriteTransaction;
     mach_port_t _threadID;
+
+    BOOL _inMemory;
 }
 @property (nonatomic, readonly) BOOL inWriteTransaction;
 @property (nonatomic, readonly) BOOL dynamic;
 @property (nonatomic, readonly, getter=getOrCreateGroup) tightdb::Group *group;
 @property (nonatomic, readwrite) RLMSchema *schema;
+@property (nonatomic, strong) RLMWeakNotifier *notifier;
 
 - (instancetype)initWithPath:(NSString *)path key:(NSData *)key readOnly:(BOOL)readonly inMemory:(BOOL)inMemory dynamic:(BOOL)dynamic error:(NSError **)error;
 - (void)handleExternalCommit;
