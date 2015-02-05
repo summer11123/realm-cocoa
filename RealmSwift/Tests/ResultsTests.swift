@@ -210,12 +210,12 @@ class ResultsTests: TestCase {
 
 class ResultsFromTableViewTests: ResultsTests {
     override func getResults() -> Results<SwiftStringObject> {
-        return realmWithTestPath().objects(SwiftStringObject)
+        return objects(SwiftStringObject.self, inRealm: realmWithTestPath())
     }
 
     override func getAggregateableResults() -> Results<SwiftAggregateObject> {
         makeAggregateableObjects()
-        return realmWithTestPath().objects(SwiftAggregateObject)
+        return objects(SwiftAggregateObject.self, inRealm: realmWithTestPath())
     }
 }
 
