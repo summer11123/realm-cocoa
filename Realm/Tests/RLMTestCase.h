@@ -37,4 +37,6 @@ NSString *RLMRealmPathForFile(NSString *);
 
 - (void)deleteFiles;
 
+- (void)waitForNotification:(NSString *)expectedNote realm:(RLMRealm *)realm block:(dispatch_block_t)block;
+
 @end
